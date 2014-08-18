@@ -30,6 +30,8 @@ module Fluent
     config_param :jmx_path, :string, :default => nil
     config_param :run_interval, :time
     config_param :add_jolokia_url, :bool, :default => false
+    config_param :user, :string, :default => nil
+    config_param :password, :string, :default => nil
 
     def initialize
       super
@@ -90,6 +92,7 @@ module Fluent
 
       http = Net::HTTP.new(@uri.host, @uri.port)
       request = Net::HTTP::Post.new(@uri.path)
+      request.basic_auth(@user, @password) if @user
       request.body = JSON.generate(opt)
       response = http.request(request)
 
