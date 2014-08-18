@@ -96,7 +96,7 @@ module Fluent
         $log.warn "Failed to get data from #{@uri}. #{response.code} #{response.message}"
         return nil
       end 
-      data = JSON.parse(resp.body)
+      data = JSON.parse(response.body)
       if data.nil?
         $log.warn "Failed to parse a response from #{@uri}. data is nil." 
         return nil
