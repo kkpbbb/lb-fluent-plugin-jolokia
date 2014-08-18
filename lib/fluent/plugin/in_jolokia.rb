@@ -84,10 +84,6 @@ module Fluent
       opt[:attribute] = attribute if attribute
       opt[:path]      = path if path
 
-      resp = HTTParty.post(@jolokia_url, :body => JSON.generate(opt))
-
-      return nil
-
       http = Net::HTTP.new(@uri.host, @uri.port)
       request = Net::HTTP::Post.new(@uri.path)
       request.body = JSON.generate(opt)
