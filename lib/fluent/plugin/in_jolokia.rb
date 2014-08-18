@@ -14,8 +14,9 @@
 #  limitations under the License.
 #
 
-require 'httparty'
 require 'json'
+require 'net/http'
+require 'uri'
 
 module Fluent
   
@@ -36,6 +37,7 @@ module Fluent
     
     def configure(conf)
       super
+      @uri = URI.parse(@jolokia_url)
     end
       
     def start
@@ -83,13 +85,25 @@ module Fluent
       opt[:path]      = path if path
 
       resp = HTTParty.post(@jolokia_url, :body => JSON.generate(opt))
-      data = JSON.parse(resp.body)
-
-      if data
-        return data
-      end
 
       return nil
+
+      http = Net::HTTP.new(@uri.host, @uri.port)
+      request = Net::HTTP::Post.new(@uri.path)
+      request.body = JSON.generate(opt)
+      response = http.request(request)
+
+      unless response.is_a?(Net::HTTPSuccess)
+        $log.warn "Failed to get data from #{@uri}. #{response.code} #{response.message}"
+        return nil
+      end 
+      data = JSON.parse(resp.body)
+      if data.nil?
+        $log.warn "Failed to parse a response from #{@uri}. data is nil." 
+        return nil
+      end
+      return data
+
     end
   end    
 end

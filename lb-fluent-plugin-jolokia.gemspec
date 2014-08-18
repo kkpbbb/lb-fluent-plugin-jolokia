@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency             "fluentd"   , ">= 0.10.35"
-  gem.add_dependency             "httparty"  , ">= 0.11.0"
   gem.add_development_dependency "rake"      , ">= 10.0.4"
   gem.add_development_dependency "simplecov" , ">= 0.7.1"
   gem.add_development_dependency "rr"        , ">= 1.1.0"
