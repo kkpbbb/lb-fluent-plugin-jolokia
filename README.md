@@ -2,6 +2,7 @@
   - https://docs.oracle.com/javase/7/docs/api/java/lang/management/ManagementFactory.html
   - http://jmxmonitor.sourceforge.net/jmx.html
   - http://afoo.me/references/tec/jolokia.html
+  - http://help.boomi.com/atomsphere/GUID-48F37A93-5BF9-488D-82C3-38E4E9D45A22.html
   
 
 ## Requires:
