@@ -1,3 +1,8 @@
+## JMX monitor ref
+  - https://docs.oracle.com/javase/7/docs/api/java/lang/management/ManagementFactory.html
+  - http://jmxmonitor.sourceforge.net/jmx.html
+  - http://afoo.me/references/tec/jolokia.html
+  
 
 ## Requires:
   - https://jolokia.org/reference/html/protocol.html
