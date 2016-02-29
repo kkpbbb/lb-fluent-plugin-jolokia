@@ -88,6 +88,12 @@ module Fluent
 
       http = Net::HTTP.new(@uri.host, @uri.port)
       request = Net::HTTP::Post.new(@uri.path)
+      
+      #xiaobing modify add default open timeout 10 secs
+      http.continue_timeout = 10
+      #set the content type of request for jolokia war in glassfish 4
+      request.content_type = 'application/json'
+      
       request.basic_auth(@user, @password) if @user
       request.body = JSON.generate(opt)
       response = http.request(request)
